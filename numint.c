@@ -116,13 +116,13 @@ double* thethreebodyproblem(
         TBP_pos[7*dimsize + i] = y3 - coy;
         TBP_pos[8*dimsize + i] = z3 - coz;
     }
-    printf("+++ RETURN POINTER CHECK: %p +++\n", TBP_pos);
+    printf("\n+++ RETURN POINTER CHECK: %p +++\n", TBP_pos);
     return TBP_pos;
 }
 
 
 // Freeing reserved memory
 void freemem(double *array) {
-    printf("+++ FREE POINTER CHECK: %p +++\n", array);
+    printf("+++ FREE POINTER CHECK: %p +++\n\n", array);
     free(array);
 }
