@@ -11,4 +11,4 @@ Visit https://releases.ubuntu.com/22.04/, get yourself the newest ubuntu-LTS and
 
 ## Run on this Apple system
 
-Should be similar to Linux
+Should be similar to Linux.
