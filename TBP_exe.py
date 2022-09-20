@@ -1,5 +1,5 @@
 import os
-from main import anim_preview, param_check, TBP_calculate, p_read
+from main import anim_preview, anim_preview_3D, param_check, TBP_calculate, p_read
 
 #################### MAIN #################### 
 
@@ -34,14 +34,21 @@ while True:
     elif command == '-v' or command == 'view' or command == 'v':
         if param_check(run_time, framerate, sun_speed, i_steps):
             anim_preview(TBP, run_time, framerate, sun_speed)
+    elif command == 'view -3D' or command == 'v -3D':
+        if param_check(run_time, framerate, sun_speed, i_steps):
+            anim_preview_3D(TBP, run_time, framerate, sun_speed)
     elif command == '-a' or command == 'animate' or command == 'a':
         if param_check(run_time, framerate, sun_speed, i_steps):
             os.system(f'manim -pql --fps {framerate} animations.py TBP_main_scene')
-    # elif command[:5] == 'merge':
-    #     if command == 'merge':
-    #         print('ERROR. \'merge\' requires name of the output mp4 as second argument.') 
-    #     else:
-    #         os.system('ffmpeg -f concat -i input.txt -c copy TBP_Larissa.mp4')
+    elif command == 'animate -3D' or command == 'a -3D':
+        if param_check(run_time, framerate, sun_speed, i_steps):
+            os.system(f'manim -pqh --fps {framerate} animations.py TBP_main_3D')
+    elif command[:5] == 'merge':
+        if command == 'merge':
+            print('ERROR. \'merge\' requires resolution (\'1080p60\') and name of output.mp4 as additional argument.') 
+        else:
+            res, name = command[6:].split(' ')
+            os.system(f'ffmpeg -f concat -i media/videos/animations/{res}/input.txt -c copy media/videos/animations/{res}/{name}')
     elif command[:8] == 'animate ':
         if param_check(run_time, framerate, sun_speed, i_steps):
             if command[8:] == '-start':

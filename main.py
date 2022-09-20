@@ -94,3 +94,28 @@ def anim_preview(TBP, run_time, framerate, sun_speed):
     plt.grid()
     #plt.savefig('../TBP_extra/TBP_preview_L.png', facecolor = 'white', bbox_inches='tight')
     plt.show()
+
+
+def anim_preview_3D(TBP, run_time, framerate, sun_speed):
+    fig, ax = plt.subplots(subplot_kw=dict(projection='3d'), figsize = (9, 9))
+    used_frames = framerate * run_time * sun_speed
+
+    # Positional matrices of each sun
+    r1 = TBP[0]
+    r2 = TBP[1]
+    r3 = TBP[2]
+
+    ax.plot(r1[0,:used_frames], r1[1,:used_frames], r1[2,:used_frames], color = 'red', alpha = 0.5)
+    ax.plot(r2[0,:used_frames], r2[1,:used_frames], r2[2,:used_frames], color = 'blue', alpha = 0.5)
+    ax.plot(r3[0,:used_frames], r3[1,:used_frames], r3[2,:used_frames], color = 'black', alpha = 0.5)
+
+    ax.plot(r1[0,used_frames:], r1[1,used_frames:], r1[2,used_frames:], color = 'red', alpha = 0.25, linestyle = '--')
+    ax.plot(r2[0,used_frames:], r2[1,used_frames:], r2[2,used_frames:], color = 'blue', alpha = 0.25, linestyle = '--')
+    ax.plot(r3[0,used_frames:], r3[1,used_frames:], r3[2,used_frames:], color = 'black', alpha = 0.25, linestyle = '--')
+
+    ax.set_xlabel('$x$')
+    ax.set_ylabel('$y$')
+    ax.set_zlabel('$z$')
+
+    plt.grid()
+    plt.show()
